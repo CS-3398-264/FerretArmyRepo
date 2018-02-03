@@ -1,14 +1,15 @@
 
 Software Requirements Specification
 for
-<Project>
+<Project 1 | Ferret Chess>
 Version 1.0 approved
-Prepared by <author>
-<organization>
-<date created>
+Prepared by <A.Maxwell>
+<Ferret Army>
+<02/02>
 Table of Contents
 Table of Contents	ii
 Revision History	ii
+
 1.	Introduction...................................	1
 1.1	Purpose........................................	1
 1.2	Document Conventions...........................	1
@@ -51,6 +52,8 @@ Appendix C: To Be Determined List......................	6
 1.1 Purpose 
 
 <Identify the product whose software requirements are specified in this document, including the revision or release number. Describe the scope of the product that is covered by this SRS, particularly if this SRS describes only part of the system or a single subsystem.>
+
+The purpose of this software requirements specification is to detail the requirements, specifications, and scope of Ferret Army's take on the traditional game of Chess. It will specify the target platform, design requirements, and feature implementations of "Ferret Chess" as contracted by the client, Professor Jason Diaz.
 
 1.2 Document Conventions
 
