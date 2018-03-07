@@ -25,44 +25,62 @@ public class GameWindow {
                 String DestY = DestTestY.getText();
                 DestTestY.setText(null);
                 int sx = (int) SourceX.charAt(0) - 48;
-                System.out.println(sx);
                 int sy = (int) SourceY.charAt(0) - 48;
-                System.out.println(sy);
                 int dx = (int) DestX.charAt(0) - 48;
-                System.out.println(dx);
                 int dy = (int) DestY.charAt(0) - 48;
+//                System.out.print(sx + " , ");
+//                System.out.println(sy);
+//                System.out.print(dx + " , ");
+//                System.out.println(dy);
+
+
+                boolean validInput = true;
+                if (sx < 0 || sx > 8 || sy < 0 || sy > 8 || dx < 0 || dx > 8 || dy < 0 || dy > 8) {
+                    validInput = false;
+                    MessageBox.setText("Invalid Input");
+                }
+                //coordinate conversion -sigh-
+                sx = 8 - sx;
+                sy = 8 - sy;
+                dx = 8 - dx;
+                dy = 8 - dy;
+
+                System.out.print(sx + " , ");
+                System.out.println(sy);
+                System.out.print(dx + " , ");
                 System.out.println(dy);
 
-//                if(SourceX.length() > 1 || SourceY.length() > 1){
-//                    if(SourceX.toString().charAt(0)(int) <= 8 && SourceY)
-//                }Character.isDigit(SourceX.charAt(0))
-
-                Piece sourcePiece = _game.getPiece(sx, sy);
-
-                if (sourcePiece.canMakeValidMove(dx, dy)) {
-                    if (_game.inCheck(_game.turn())) {
-                        MessageBox.setText(_game.turn().text() + " Checkmate");
+                if (validInput) {
+                    Piece sourcePiece = _game.getPiece(sx, sy);
+                    if (sourcePiece.canMakeValidMove(dx, dy)) {
+                        if (_game.inCheck(_game.turn())) {
+                            MessageBox.setText(_game.turn().text() + " Checkmate");
+                        } else {
+                            MessageBox.setText("Moved!");
+                        }
+                        setGameBoard(new GameBoard(_game));
                     } else {
-                        MessageBox.setText("Moved!");
+                        MessageBox.setText("Invalid Move, try again.");
                     }
-                    setGameBoard(new GameBoard(_game));
-                } else {
-                    MessageBox.setText("Invalid Move, try again.");
+                    sourcePiece = null;
                 }
 
-                sourcePiece = null;
-                _game.GW.GWPanel.validate();
-                _game.GW.GWPanel.repaint();
-            }
 
-        });
-
-        refreshButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+//                _game.GW.GWPanel.validate();
+//                _game.GW.GWPanel.repaint();
                 GWPanel.repaint();
             }
+
         });
+
+        refreshButton.addActionListener(new
+
+                                                ActionListener() {
+                                                    @Override
+                                                    public void actionPerformed(ActionEvent e) {
+                                                        GWPanel.repaint();
+                                                    }
+                                                });
     }
 
     public static GameWindow main(Game _game) {
@@ -94,13 +112,9 @@ public class GameWindow {
     public void setGameBoard(GameBoard GB) {
         GameBoardPanel.removeAll();
         GameBoardPanel.add(GB);
-        GameBoardPanel.revalidate();
-        GameBoardPanel.repaint();
-    }
-
-    public void redrawGWPanel() {
-        GWPanel.revalidate();
-        GWPanel.repaint();
+//        GameBoardPanel.revalidate();
+//        GameBoardPanel.repaint();
+//        GWPanel.repaint();
     }
 
     {
@@ -313,4 +327,10 @@ public class GameWindow {
     public JComponent $$$getRootComponent$$$() {
         return GWPanel;
     }
+
+    //    public void redrawGWPanel() {
+//        GWPanel.revalidate();
+//        GWPanel.repaint();
+//    }
+
 }
