@@ -10,21 +10,15 @@ public class Game {
 		newGame();
 		//new GUI display?
 		Dialog.main(GW);
-		System.out.println("End of Constructor");
 	}
 
 	private void initializeGameWindow() {
 		GW = GameWindow.main(this);
 		updateGameBoard();
-		GW.redrawGWPanel();
 	}
 
 	public void updateGameBoard(){
 		GW.setGameBoard(new GameBoard(this));
-        System.out.println("UpdateGB");
-        //GW.GB.setVisible(true);
-//        GW.GWPanel.revalidate();
-//        GW.GWPanel.repaint();
 	}
 
 	//Clears game to start a new one
@@ -33,7 +27,6 @@ public class Game {
 		//_moves.clear();
 		_turn = WHITE;
 		initializeGameWindow();
-		System.out.println("InitializeGW");
 	}
 
 	//Makes the move on the board, assuming it is valid
