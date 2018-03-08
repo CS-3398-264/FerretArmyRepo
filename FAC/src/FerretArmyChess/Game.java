@@ -4,12 +4,18 @@ import java.util.concurrent.TimeUnit;
 
 import static FerretArmyChess.Color.*;
 
+/** 
+*  Game
+*  @author Jordan Guerrero
+*  @author Jeremy Cole
+*/
 public class Game {
 	Game(){
 		//_moves = new ArrayList<Move>();
 		newGame();
 		//new GUI display?
 		Dialog.main(GW);
+		System.out.println("End of Constructor");
 	}
 
 	private void initializeGameWindow() {
@@ -19,6 +25,10 @@ public class Game {
 
 	public void updateGameBoard(){
 		GW.setGameBoard(new GameBoard(this));
+        System.out.println("UpdateGB");
+        //GW.GB.setVisible(true);
+//        GW.GWPanel.revalidate();
+//        GW.GWPanel.repaint();
 	}
 
 	//Clears game to start a new one
@@ -27,6 +37,7 @@ public class Game {
 		//_moves.clear();
 		_turn = WHITE;
 		initializeGameWindow();
+		System.out.println("InitializeGW");
 	}
 
 	//Makes the move on the board, assuming it is valid
@@ -64,7 +75,11 @@ public class Game {
 
 	}*/
 
-	//Returns whether king of this color is being checked by opponent
+	/**
+	*  @return TRUE if the king of this COLOR is being check by opponent.
+	* 		   Otherwise, returns FALSE.
+	*  @param color of the king
+	*/
 	public boolean inCheck(Color color){
 		int x = getKingX(color);
 		int y = getKingY(color);
@@ -81,7 +96,10 @@ public class Game {
 		return false;
 	}
 
-	//Returns whether the current player has any valid moves to make
+	/**
+	*  @return TRUE if the current player does not have any valid moves
+	* 		   to make. Otherwise returns FALSE.
+	*/
 	public boolean noMovesLeft(){
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
@@ -96,7 +114,11 @@ public class Game {
 		return true;
 	}
 
-	//Returns the piece at (x,y)
+	/**
+	*  @return the PIECE at (x,y)
+	*  @param x is an int to represent the x coordinate
+	*  @param y is an int to represent the y coordinate
+	*/
 	public Piece getPiece(int x, int y){
 		return _board[x][y];
 	}
@@ -106,8 +128,8 @@ public class Game {
 		Piece blackR1 = new Rook(this, BLACK, 0, 0);
 		Piece blackKn1 = new Knight(this, BLACK, 1, 0);
 		Piece blackB1 = new Bishop(this, BLACK, 2, 0);
-		Piece blackQ = new Queen(this, BLACK, 3, 0);
-		_blackKing = new King(this, BLACK, 4, 0);
+		Piece blackQ = new Queen(this, BLACK, 4, 0);
+		_blackKing = new King(this, BLACK, 3, 0);
 		Piece blackB2 = new Bishop(this, BLACK, 5, 0);
 		Piece blackKn2 = new Knight(this, BLACK, 6, 0);
 		Piece blackR2 = new Rook(this, BLACK, 7, 0);
@@ -123,8 +145,8 @@ public class Game {
 		Piece whiteR1 = new Rook(this, WHITE, 0, 7);
 		Piece whiteKn1 = new Knight(this, WHITE, 1, 7);
 		Piece whiteB1 = new Bishop(this, WHITE, 2, 7);
-		Piece whiteQ = new Queen(this, WHITE, 3, 7);
-		_whiteKing = new King(this, WHITE, 4, 7);
+		Piece whiteQ = new Queen(this, WHITE, 4, 7);
+		_whiteKing = new King(this, WHITE, 3, 7);
 		Piece whiteB2 = new Bishop(this, WHITE, 5, 7);
 		Piece whiteKn2 = new Knight(this, WHITE, 6, 7);
 		Piece whiteR2 = new Rook(this, WHITE, 7, 7);
@@ -141,8 +163,8 @@ public class Game {
 			{blackR1, blackP1, null, null, null, null, whiteP1, whiteR1},
 			{blackKn1, blackP2, null, null, null, null, whiteP2, whiteKn1},
 			{blackB1, blackP3, null, null, null, null, whiteP3, whiteB1},
-			{blackQ, blackP4, null, null, null, null, whiteP4, whiteQ},
-			{_blackKing, blackP5, null, null, null, null, whiteP5, _whiteKing},
+			{_blackKing, blackP4, null, null, null, null, whiteP4, _whiteKing},
+			{blackQ, blackP5, null, null, null, null, whiteP5, whiteQ},
 			{blackB2, blackP6, null, null, null, null, whiteP6, whiteB2},
 			{blackKn2, blackP7, null, null, null, null, whiteP7, whiteKn2},
 			{blackR2, blackP8, null, null, null, null, whiteP8, whiteR2} };
@@ -151,12 +173,17 @@ public class Game {
 		
 	}
 
-	//Returns the color whose turn it is
+	/**
+	*  @return the color whose turn it is
+	*/
 	public Color turn(){
 		return _turn;
 	}
 
-	//Returns the x location of king of same color
+	/**
+	*  @return the x location of the king of the same COLOR
+	*  @param color of the king
+	*/
 	public int getKingX(Color color){
 		if(color == BLACK){
 			return _blackKing.getX();
@@ -166,7 +193,10 @@ public class Game {
 		}
 	}
 
-	//Returns the y location of king of same color
+	/**
+	*  @return the y location of the king of the same COLOR
+	*  @param color of the king
+	*/
 	public int getKingY(Color color){
 		if(color == BLACK){
 			return _blackKing.getY();
