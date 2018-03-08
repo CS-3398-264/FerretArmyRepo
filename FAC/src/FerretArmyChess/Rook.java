@@ -127,7 +127,7 @@ public class Rook implements Piece{
 			return false;
 		}
 		else{
-			_hasMoved = true;
+			//_hasMoved = true;
 			return true;
 		}
 	}
