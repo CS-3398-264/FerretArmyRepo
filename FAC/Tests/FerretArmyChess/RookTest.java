@@ -37,11 +37,10 @@ public class RookTest {
     }
 
     @Test
-    //tests boundary restrictions of WHITE Rook
-    public void testBoundary(){
+    //tests Collision Movement
+    public void testCollisionMovement(){
         Game testGame = new Game();
         Rook whiteRook = new Rook(testGame, Color.WHITE, 7,7);
-        //RegularMove move = new RegularMove(whiteRook, 7,7,)
-        assertFalse(whiteRook.canMakeValidMove(8,7));
+        assertFalse(whiteRook.canMakeValidMove(7,5));
     }
 }

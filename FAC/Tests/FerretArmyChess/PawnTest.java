@@ -27,14 +27,6 @@ public class PawnTest {
     }
 
     @Test
-    //tests pawn boundary movement
-    public void testBoundaryMovement() {
-        Game testGame = new Game();
-        Pawn newPawn = new Pawn(testGame, Color.BLACK, 7,1);
-        assertFalse(newPawn.canMakeValidMove(8,2));
-    }
-
-    @Test
     //tests invalid pawn movement
     public void testInvalidMovement() {
         Game testGame = new Game();
@@ -47,7 +39,8 @@ public class PawnTest {
     public void testPieceCollision(){
         Game testGame = new Game();
         Pawn newPawn = new Pawn(testGame, Color.WHITE, 2,6);
-        Pawn oppPawn = new Pawn(testGame, Color.BLACK, 2,5);
+        Knight newKnight = new Knight(testGame, Color.WHITE, 1,7);
+        newKnight.canMakeValidMove(2,5);
         assertFalse(newPawn.canMakeValidMove(2,4));
     }
 }

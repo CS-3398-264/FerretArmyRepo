@@ -36,4 +36,12 @@ public class BishopTest {
         assertFalse(whiteBishop.canMakeValidMove(5,6));
     }
 
+    @Test
+    //tests Obstacle Movement
+    public void testObstacleMovement(){
+        Game testGame = new Game();
+        Bishop whiteBishop = new Bishop(testGame, Color.WHITE, 5,7);
+        assertFalse(whiteBishop.canMakeValidMove(3,5));
+    }
+
 }
